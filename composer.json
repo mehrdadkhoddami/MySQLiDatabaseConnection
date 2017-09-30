@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MehrdadKhoddami\\Database-MySQLi\\": "src"
+            "MehrdadKhoddami\\MySQLiDatabase\\": "src"
         }
     },
     "minimum-stability": "dev"
