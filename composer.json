@@ -3,6 +3,7 @@
     "description": "class for creating, connecting and executing queries via MySQLi",
     "type": "library",
     "license": "The MIT License (MIT)",
+	"version": "1.0.0",
     "authors": [
         {
             "name": "Mehrdad Khoddami",
