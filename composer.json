@@ -9,7 +9,6 @@
             "email": "khoddami.me@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
     },
@@ -17,5 +16,6 @@
         "psr-4": {
             "MehrdadKhoddami\\Database-MySQLi\\": "src"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
