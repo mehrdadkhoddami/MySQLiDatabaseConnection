@@ -2,7 +2,6 @@
 namespace MehrdadKhoddami\MySQLiDatabase;
 use mysqli;
 
-
 /**
  * class for creating, connecting and excuting queries
  *
@@ -13,7 +12,7 @@ use mysqli;
  * @author   Mehrdad Khoddami <khoddami.me@gmail.com>
  * @license  https://opensource.org/licenses/MIT The MIT License (MIT)
  */
- 
+
 class DB
 {
     /**
@@ -24,7 +23,7 @@ class DB
     static protected $mysql_credentials = [];
 
     static protected $_connection;
-	// Store the single instance.
+    // Store the single instance.
     static protected $_instance;
 
     /**
@@ -33,24 +32,24 @@ class DB
      * @var string
      */
     static protected $table_prefix;
-	
-	/**
-	 * Get an instance of the Database.
+
+    /**
+     * Get an instance of the Database.
      *
      * @param array                         $credentials  Database connection details
      * @param string                        $table_prefix Table prefix
      * @param string                        $encoding     Database character encoding
      *
-	 * @return Database
-     * @throws \Mehrdad\MySQLiDatabase\MysqlCredentialsNotProvidedException
-     * @throws \Mehrdad\MySQLiDatabase\MysqlCanNotConnectException
-	 */
-	public static function getInstance(
+     * @return DB
+     * @throws \MehrdadKhoddami\MySQLiDatabase\MysqlCredentialsNotProvidedException
+     * @throws \MehrdadKhoddami\MySQLiDatabase\MysqlCanNotConnectException
+     */
+    public static function getInstance(
         array $credentials,
         $table_prefix = null,
         $encoding = 'utf8mb4'
     )
-	{
+    {
         if (empty($credentials)) {
             throw new MysqlCredentialsNotProvidedException('MySQL credentials not provided!');
         }
@@ -59,33 +58,36 @@ class DB
             self::$_instance = new self($credentials, $table_prefix, $encoding);
         }
         return self::$_instance;
-	}
-	
-	/**
-	 * Constructor
+    }
+
+    /**
+     * Constructor
      *
      * @param array                         $credentials  Database connection details
      * @param string                        $table_prefix Table prefix
      * @param string                        $encoding     Database character encoding
      *
-     * @throws \Mehrdad\MySQLiDatabase\MysqlCredentialsNotProvidedException
-     * @throws \Mehrdad\MySQLiDatabase\MysqlCanNotConnectException
-	 */
-	public function __construct(
+     * @return \mysqli
+     * @throws \MehrdadKhoddami\MySQLiDatabase\MysqlCredentialsNotProvidedException
+     * @throws \MehrdadKhoddami\MySQLiDatabase\MysqlCanNotConnectException
+     */
+    public function __construct(
         array $credentials,
         $table_prefix = null,
         $encoding = 'utf8mb4'
     )
-	{
+    {
         if (empty($credentials)) {
             throw new MysqlCredentialsNotProvidedException('MySQL credentials not provided!');
         }
 
+        mysqli_report(MYSQLI_REPORT_STRICT);
         try {
             $connection = new mysqli($credentials['host'], $credentials['user'], $credentials['password'], $credentials['database']);
             mysqli_set_charset($connection, $encoding);
         } catch (\Exception $e) {
-            throw new MysqlCanNotConnectException($e->getMessage());
+            //throw new MysqlCanNotConnectException($e->getMessage());
+            throw new MysqlCanNotConnectException('Can NOT connect to Database!');
         }
 
 
@@ -94,16 +96,16 @@ class DB
         self::$table_prefix         = $table_prefix;
 
         return self::$_connection;
-	}
-	
-	/**
-	 * Empty clone magic method to prevent duplication. 
+    }
+
+    /**
+     * Empty clone magic method to prevent duplication.
      *
      * @return void
-	 */
+     */
     protected function __clone()
-	{
-	}
+    {
+    }
 
     /**
      * Private unserialize method to prevent unserializing of the *Singleton*
@@ -114,14 +116,14 @@ class DB
     protected function __wakeup()
     {
     }
-	
-	/**
-	 * Get the mysqli connection. 
-	 */
-	public function getConnection()
-	{
-	    return self::$_connection;
-	}
+
+    /**
+     * Get the mysqli connection.
+     */
+    public function getConnection()
+    {
+        return self::$_connection;
+    }
 
     /**
      * Check if database connection has been created
