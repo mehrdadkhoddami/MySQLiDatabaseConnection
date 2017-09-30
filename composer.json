@@ -1,6 +1,6 @@
 {
     "name": "mehrdadkhoddami/database-mysqli",
-    "description": "class for creating, connecting and excuting queries",
+    "description": "class for creating, connecting and executing queries via MySQLi",
     "type": "library",
     "license": "The MIT License (MIT)",
     "authors": [
