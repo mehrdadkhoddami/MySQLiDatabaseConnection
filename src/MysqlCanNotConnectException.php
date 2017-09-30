@@ -1,5 +1,5 @@
 <?php
-namespace Mehrdad\MySQLiDatabase;
+namespace MehrdadKhoddami\MySQLiDatabase;
 
 class MysqlCanNotConnectException extends \Exception
 {

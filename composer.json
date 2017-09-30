@@ -1,11 +1,11 @@
 {
-    "name": "mehrdad/database-mysqli",
+    "name": "mehrdadkhoddami/database-mysqli",
     "description": "class for creating, connecting and excuting queries",
     "type": "library",
     "license": "The MIT License (MIT)",
     "authors": [
         {
-            "name": "Mehrdad",
+            "name": "Mehrdad Khoddami",
             "email": "khoddami.me@gmail.com"
         }
     ],
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Mehrdad\\Database-MySQLi\\": "src"
+            "MehrdadKhoddami\\Database-MySQLi\\": "src"
         }
     }
 }

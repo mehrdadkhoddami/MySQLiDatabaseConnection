@@ -1,5 +1,5 @@
 <?php
-namespace Mehrdad\MySQLiDatabase;
+namespace MehrdadKhoddami\MySQLiDatabase;
 use mysqli;
 
 
